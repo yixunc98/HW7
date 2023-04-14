@@ -1,7 +1,4 @@
-on:
-  push:
-    branches: main
-  workflow_dispatch:
+on: [workflow_dispatch]
 
 name: Render Report
 
@@ -28,21 +25,27 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
             packages:
-               any::knitr
-               any::rmarkdown
-               any::jsonlite
-               any::dplyr
+               any::tidyverse
+               any::leaflet
+               any::osmdata
                any::ggplot2
-               any::readr
                any::lubridate
-               any::forcats
-
+               any::viridis
+               any::sf
+               any::ggmap
+               any::plotly
+               any::gt
+               any::paletteer
+               any::ggthemes
+               any::htmltools
+               any::scales
       - name: Render document
         uses: quarto-dev/quarto-actions/render@v2
+        env:
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
         with:
-          to: gfm
+          to: html
           path: HW8.qmd
-
       - name: Setup git config
         run: |
           git config user.name "GitHub Actions Bot"
