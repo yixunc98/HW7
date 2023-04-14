@@ -27,7 +27,6 @@ jobs:
             packages:
                any::tidyverse
                any::leaflet
-               any::osmdata
                any::ggplot2
                any::lubridate
                any::viridis
@@ -40,6 +39,8 @@ jobs:
                any::htmltools
                any::scales
                any::tidycensus
+               any::janitor
+               any::osmdata
       - name: Render document
         uses: quarto-dev/quarto-actions/render@v2
         env:
