@@ -6,7 +6,6 @@ editor: visual
 
 ```{r}
 api_key <- Sys.getenv("MAPS_API_KEY")
-library(flexdashboard)
 library(tidyverse)
 library(leaflet)
 library(osmdata)
