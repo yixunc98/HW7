@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>hw7</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="HW8_files/libs/clipboard/clipboard.min.js"></script>
+<script src="HW8_files/libs/quarto-html/quarto.js"></script>
+<script src="HW8_files/libs/quarto-html/popper.min.js"></script>
+<script src="HW8_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="HW8_files/libs/quarto-html/anchor.min.js"></script>
+<link href="HW8_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="HW8_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="HW8_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="HW8_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="HW8_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="HW8_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="HW8_files/libs/jquery-1.12.4/jquery.min.js"></script>
+<link href="HW8_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="HW8_files/libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="HW8_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="HW8_files/libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="HW8_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="HW8_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="HW8_files/libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="HW8_files/libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="HW8_files/libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">hw7</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"MAPS_API_KEY"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.1     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Data (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: viridisLite</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ Google's Terms of Service: &lt;https://mapsplatform.google.com&gt;
+ℹ Please cite ggmap if you use it! Use `citation("ggmap")` for details.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'
+
+The following object is masked from 'package:ggmap':
+
+    wind
+
+The following object is masked from 'package:ggplot2':
+
+    last_plot
+
+The following object is masked from 'package:stats':
+
+    filter
+
+The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paletteer)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'
+
+The following object is masked from 'package:viridis':
+
+    viridis_pal
+
+The following object is masked from 'package:purrr':
+
+    discard
+
+The following object is masked from 'package:readr':
+
+    col_factor</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hen_shop.df <span class="ot">&lt;-</span> <span class="fu">opq</span>(<span class="at">bbox =</span> <span class="st">"hennepin"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">"shop"</span>, <span class="at">value =</span> <span class="fu">c</span>( <span class="st">"coffee"</span>, <span class="st">"ski"</span>, <span class="st">"massage"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>hen.df <span class="ot">&lt;-</span> hen_shop.df<span class="sc">$</span>osm_points <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(shop)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(osm_id, name, shop, opening_hours, phone, website, geometry) <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">shop =</span> <span class="fu">str_to_title</span>(shop) <span class="sc">%&gt;%</span> <span class="fu">as_factor</span>())</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Levels of shop type factor</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>shop_types <span class="ot">&lt;-</span> <span class="fu">levels</span>(hen.df<span class="sc">$</span>shop)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>n_types    <span class="ot">&lt;-</span> <span class="fu">length</span>(shop_types)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Initialize colour pallete (discrete in this case)</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>my_pallete <span class="ot">&lt;-</span> <span class="fu">colorFactor</span>(<span class="fu">viridis_pal</span>(<span class="at">option =</span> <span class="st">"D"</span>)(n_types), <span class="at">levels =</span> shop_types)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Call leaflet</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Add a text label like normal</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>shop_label.df <span class="ot">&lt;-</span> hen.df <span class="sc">%&gt;%</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(name, opening_hours<span class="sc">:</span>website),</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(.x), <span class="st">"NA"</span>, .x)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_label =</span> <span class="fu">str_c</span>(</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>                   name,</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"&lt;br/&gt;Store Type: "</span>,</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>                   shop,</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"&lt;br/&gt;Open Hours: "</span>,</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>                   opening_hours,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"&lt;br/&gt;Phone: "</span>,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>                   phone,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"&lt;br/&gt;Website: "</span>,</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>                   website</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Redisplay the leaflet</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>shop_label.df <span class="sc">%&gt;%</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(<span class="st">'CartoDB.Positron'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">color   =</span> <span class="sc">~</span><span class="fu">my_pallete</span>(shop),</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">label   =</span> <span class="sc">~</span><span class="fu">map</span>(text_label, HTML), <span class="co">#map over labels, make html</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.6</span>, <span class="co">#alpha</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight  =</span> <span class="dv">4</span>, <span class="co">#outline strength</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius  =</span> <span class="dv">4</span> <span class="co">#size of circle</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">title    =</span> <span class="st">"Store Type"</span>,</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"bottomright"</span>,</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors   =</span> <span class="fu">viridis_pal</span>(<span class="at">option =</span> <span class="st">"D"</span>)(n_types),</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels   =</span> shop_types </span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2758ebbfa92065f83fe9" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-2758ebbfa92065f83fe9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[44.9183488,44.9246756,44.9679442,44.9482326,44.9683588,44.8547345,44.8745525,44.9372852,44.942805,44.9587852,44.948231,44.9488426,45.0934446,44.8554197,44.8553826,44.8849348,44.9635743,44.9248296,44.8814702,44.859805,44.948643,44.9521301,45.1604118,45.053463,45.03508,45.02007,44.9403658,45.1191057,44.9737374,45.1841853,44.9379843,44.8449644,44.9025439],[-93.1871653,-93.3141521,-93.2780756,-93.2953013,-93.446605,-93.4338249,-93.328241,-93.2906232,-93.2884639,-93.2876968,-93.287482,-93.3001331,-93.4275103,-93.2411496,-93.2436418,-93.2105956,-93.197986,-93.2910113,-93.2106495,-93.3041376,-93.321887,-93.2980416,-93.2334812,-93.3629958,-93.4092337,-93.2373023,-93.1801694,-93.4008307,-93.3087514,-93.3932005,-93.3508003,-93.4411514,-93.7487738],4,null,null,{"interactive":true,"className":"","stroke":true,"color":["#440154","#FDE725","#FDE725","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#FDE725","#440154","#440154","#FDE725","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#FDE725"],"weight":4,"opacity":0.6,"fill":true,"fillColor":["#440154","#FDE725","#FDE725","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#FDE725","#440154","#440154","#FDE725","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#FDE725"],"fillOpacity":0.2},null,null,null,null,["The Great Metropolitan Back Rub<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Coffee & Tea Ltd<br/>Store Type: Coffee<br/>Open Hours: NA<br/>Phone: +1 612 920 6344<br/>Website: https://coffeeandtealtd.com/","Muffin Top Cafe<br/>Store Type: Coffee<br/>Open Hours: Mo-Th 07:00-22:00; Fr 07:00-23:00; Sa 08:00-23:00; Su 08:00-22:00<br/>Phone: +16123155946<br/>Website: http://www.muffintopcafe.com/","Healthy Touch Massage and Wellness<br/>Store Type: Massage<br/>Open Hours: Mo-Fr 9:00-21:00; Su 11:00-18:00<br/>Phone: NA<br/>Website: http://healthytouchmn.com","Massage Envy<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Massage Retreat & Spa<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Massage Envy Spa - Edina<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-952-955-8228<br/>Website: https://www.massageenvy.com/clinics/MN/Edina-.aspx","Holistic Kneads<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-612-827-9557<br/>Website: https://www.holistickneads.net/","Peace is at Hand Massage Therapy & Bodywork<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-952-240-0724<br/>Website: https://www.peaceisathand.com","In Touch Massage<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: https://www.intouch-massage.biz","Vida Bodywork<br/>Store Type: Massage<br/>Open Hours: Mo-Sa 10:00-19:00; Su 11:00-17:00<br/>Phone: NA<br/>Website: https://www.vidabodywork.com/","Caribou Coffee<br/>Store Type: Coffee<br/>Open Hours: Mo-Su 06:00-19:00<br/>Phone: NA<br/>Website: NA","Hand and Stone<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Relaxing Massage<br/>Store Type: Massage<br/>Open Hours: Mo-Fr 10:00-21:30; Sa 09:30-21:30; Su 11:00-19:00<br/>Phone: +1-952-854-4815<br/>Website: NA","Nespresso<br/>Store Type: Coffee<br/>Open Hours: Mo-Fr 10:00-21:30; Sa 09:30-21:30; Su 11:00-19:00<br/>Phone: NA<br/>Website: NA","XpresSpa<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Path Bodywork + Wellness<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-612-564-5427<br/>Website: https://www.path-wellness.com","Posh Spa<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-612-315-2267<br/>Website: NA","The Chiroport Chiropractic<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Massage Envy<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Massage Envy<br/>Store Type: Massage<br/>Open Hours: Mo-Sa 09:00-21:00; Su 10:00-20:00; PH closed<br/>Phone: +16124559000<br/>Website: https://locations.massageenvy.com/minnesota/minneapolis/3254-west-lake-street.html?utm_source=GMB&utm_medium=useractions&utm_campaign=website","Sabai Body Temple<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-612-872-8354<br/>Website: https://www.sabaibodytemple.com/","Massage Envy<br/>Store Type: Massage<br/>Open Hours: 08:00-22:00<br/>Phone: NA<br/>Website: https://www.massageenvy.com","Thai Massage<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Massage Retreat & Spa<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Massage & Healing by Mary and Friends<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-612-964-9366<br/>Website: NA","Heart Life Massage<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +1-651-698-1022<br/>Website: http://www.heartlifemassage.com/","Jai Dee<br/>Store Type: Massage<br/>Open Hours: by_appointment<br/>Phone: +1 763 600 6957<br/>Website: https://www.jaideewellness.com/","Clear Holistic Therapies<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +16123777677<br/>Website: http://www.clearholistictherapies.com/","Sun Spa<br/>Store Type: Massage<br/>Open Hours: Mo-Su 09:00-20:00<br/>Phone: (763) 432-9139<br/>Website: https://sunspamn.com/","Elements Massage<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: +19523535674<br/>Website: https://elementsmassage.com/st-louis-park/how-much-does-a-massage-cost?y_source=1_MTU1OTg3MjctNzE1LWxvY2F0aW9uLm1lbnVfdXJs","Cozy Asian Massage<br/>Store Type: Massage<br/>Open Hours: NA<br/>Phone: NA<br/>Website: NA","Mocha Monkey<br/>Store Type: Coffee<br/>Open Hours: NA<br/>Phone: +19523008895<br/>Website: http://themochamonkey.com/"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#440154FF","#FDE725FF"],"labels":["Massage","Coffee"],"na_color":null,"na_label":"NA","opacity":0.5,"position":"bottomright","type":"unknown","title":"Store Type","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[44.8449644,45.1841853],"lng":[-93.7487738,-93.1801694]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
