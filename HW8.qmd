@@ -1,0 +1,80 @@
+---
+title: "hw7"
+format: html
+editor: visual
+---
+
+```{r}
+api_key <- Sys.getenv("MAPS_API_KEY")
+library(flexdashboard)
+library(tidyverse)
+library(leaflet)
+library(osmdata)
+library(viridis)
+library(sf)
+library(ggmap)
+library(tidycensus)
+library(plotly)
+library(lubridate)
+library(gt)
+library(paletteer)
+library(ggthemes)
+library(htmltools)
+library(scales)
+```
+
+```{r}
+hen_shop.df <- opq(bbox = "hennepin") %>%
+  add_osm_feature(key = "shop", value = c( "coffee", "ski", "massage")) %>%
+  osmdata_sf()
+hen.df <- hen_shop.df$osm_points %>%
+  janitor::clean_names() %>%
+  filter(!is.na(shop)) %>%
+  select(osm_id, name, shop, opening_hours, phone, website, geometry) %>%
+  mutate(shop = str_to_title(shop) %>% as_factor())
+# Levels of shop type factor
+shop_types <- levels(hen.df$shop)
+n_types    <- length(shop_types)
+
+#Initialize colour pallete (discrete in this case)
+my_pallete <- colorFactor(viridis_pal(option = "D")(n_types), levels = shop_types)
+
+#Call leaflet
+#Add a text label like normal
+shop_label.df <- hen.df %>%
+  mutate(
+    across(
+      c(name, opening_hours:website),
+      ~ifelse(is.na(.x), "NA", .x)
+    ),
+    text_label = str_c(
+                   name,
+                   "<br/>Store Type: ",
+                   shop,
+                   "<br/>Open Hours: ",
+                   opening_hours,
+                   "<br/>Phone: ",
+                   phone,
+                   "<br/>Website: ",
+                   website
+                 )
+  )
+
+#Redisplay the leaflet
+shop_label.df %>%
+  leaflet() %>%
+  addProviderTiles('CartoDB.Positron') %>% 
+  addCircleMarkers(
+    color   = ~my_pallete(shop),
+    label   = ~map(text_label, HTML), #map over labels, make html
+    opacity = 0.6, #alpha
+    weight  = 4, #outline strength
+    radius  = 4 #size of circle
+  ) %>%
+  addLegend(
+    title    = "Store Type",
+    position = "bottomright",
+    colors   = viridis_pal(option = "D")(n_types),
+    labels   = shop_types 
+  )
+```
